@@ -720,6 +720,7 @@ ledger:
   snapshots:
     # Path on the file system where peer will store ledger snapshots
     rootDir: /var/hyperledger/production/snapshots
+    hashAlgorithm: "ParallelHash256"
 
 ###############################################################################
 #
