@@ -7,20 +7,24 @@ version: '3.7'
 services:
   peer0.org1.example.com:
     container_name: peer0.org1.example.com
-    image: my-custom-peer:latest
+    image: hyperledger/fabric-peer:${IMAGE_TAG}
     labels:
       service: hyperledger-fabric
+    ports:
+      - "6060:6060"
     environment:
       #Generic peer variables
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_test
+      - CORE_PEER_PROFILE_ENABLED=true
+      - GODEBUG=mutexprofilefraction=1,blockprofilerate=100
     volumes:
       - ./docker/peercfg:/etc/hyperledger/peercfg
       - ${DOCKER_SOCK}:/host/var/run/docker.sock
 
   peer0.org2.example.com:
     container_name: peer0.org2.example.com
-    image: my-custom-peer:latest
+    image: hyperledger/fabric-peer:${IMAGE_TAG}
     labels:
       service: hyperledger-fabric
     environment:

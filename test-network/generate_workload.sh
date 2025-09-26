@@ -8,8 +8,8 @@ echo "Generating 10KB data payload..."
 PAYLOAD=$(head -c 10240 /dev/urandom | base64 -w 0)
 echo "Payload generated."
 
-echo "Generating 100000 transactions with large values..."
-for i in {1..100000}
+echo "Generating 150000 transactions with large values..."
+for i in {1..150000}
 do
   # Safely construct the JSON string using printf to avoid shell interpretation issues
   CTOR_JSON=$(printf '{"function":"CreateAsset","Args":["asset%s","blue","20","%s","750"]}' "$i" "$PAYLOAD")
